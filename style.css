@@ -1,15 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
 
- th, td {
+table, th, td {
     border: 1px solid black;
-    border-collapse: collapse;
+    border-collapse:collapse;
 	
 }
-
-table{
-    border: 1px solid black;
-
 
 th, td {
     padding: 5px;
