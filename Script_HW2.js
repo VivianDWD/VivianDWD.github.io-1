@@ -1,17 +1,19 @@
+$(document).ready(function(){
+  
+  var src="https://hivelab.org/static/students.json";
+  $.getJSON(src, function(data){
+    var table_student = $('#IEtable');
 
-    $(document).ready(function () {
-       $.getJSON("https://hivelab.org/static/students.json", function (json) {
-        var tr;
-        for (var i = 0; i < json.length; i++) {
-           tr = $('<tr/>');
-            tr.append("<td>" + json[i].Name + "</td>");
-            tr.append("<td>" + json[i].GPA + "</td>");
-            tr.append("<td>" + json[i].GRE_V + "</td>");
-            tr.append("<td>" + json[i].GRE_Q + "</td>");
-            tr.append("<td>" + json[i].Essay+ "</td>");
-            tr.append("<td>" + json[i].Recom+ "</td>");
-            $('#hw2table').append(tr); 
-        }
+    $.each(data, function(index, student){
    
-		});
-	});// JavaScript Document*/
+      table_student.append("<tr><td>" + student.Name 
+	 		 +"</td><td>" + student.GPA 
+	  		 +"</td><td>" + student.GRE_V 
+	 		 +"</td><td>" +  student.GRE_Q 
+	  		 +"</td><td>" + student.Essay 
+			 +"</td><td>" + student.Recom + "</td></tr>");
+   
+    });
+  });
+});
+// JavaScript Document

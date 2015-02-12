@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+color: #660000;
+}
+h2 {
+text-align: center
+}
+#IEtable {
+	width:70%;
+	 margin-left:auto;
+	 margin-right:auto;
+	 margin-top:10px;
+padding: 20px;
+
+border-spacing: 1px;
+border-collapse:collapse;
+border:solid #996666 2px;
+color: brown;
+}
+th {
+font-size:20px;
+font-family:"Lucida Console", Monaco, monospace
+color: #663366;
+font-weight: bold;
+text-align: center;
+border:solid #996666 1px;
+padding: 6px;
+background-color: #660000;
+color: #FFFFCC;
+	
+}
+td {
+width: 200px;
+font-weight: bold;
+text-align: center;
+border:solid #996666 1px;
+padding: 5px;
+background-color:#FFFFCC;
+}
+
