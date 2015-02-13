@@ -1,3 +1,4 @@
+// JavaScript Document
 $(document).ready(function(){
   
   var src="https://hivelab.org/static/students.json";
@@ -16,4 +17,3 @@ $(document).ready(function(){
     });
   });
 });
-// JavaScript Document
