@@ -34,14 +34,11 @@
    				 console.log(data);
 				 dataset = data;
 			
-			
+			var max = d3.max(dataset, function(d) { retrun d.Lx; } )
+			console.log(max);					
 		
 				var xScale = d3.scale.linear()
-                     .domain([0, 
-					 d3.max(dataset, function(d) { 
-					 return d.Lx;
-					 console.log(d.Lx); 
-					 })
+                     .domain([0, max
 					 ])
                      .range([padding, w-padding]);
 					 
