@@ -43,7 +43,7 @@
                      .range([padding, w-padding]);
 					 
 				var yScale = d3.scale.linear()
-                     .domain([0, d3.max(dataset, function(d) { return d.Ly; })])
+                     .domain([0, d3.max(dataset, function(d) { parseFloat(d.Ly) })])
                      .range([h-padding, padding]);	
 				var rScale = d3.scale.linear()
 								 .domain([0, d3.max(dataset, function(d) { return parseFloat(d.Ly); })])
