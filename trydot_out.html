@@ -34,7 +34,7 @@
    				 console.log(data);
 				 dataset = data;
 			
-			var max = d3.max(dataset, function(d) { return d.Lx; } )
+			var max = d3.max(dataset, function(d) { return parseFloat(d.Lx); } )
 			console.log(max);					
 		
 				var xScale = d3.scale.linear()
