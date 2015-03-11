@@ -90,9 +90,9 @@
 			   		return i * (width / 5)+padding;
 			   })
 			   .attr("y", function(d) {
-			   		return h - (d.UniversityA );
+			   		return h - (d.UniversityA )+padding;
 			   })
-			   .attr("width", w / 5 - barPadding)
+			   .attr("width", width / 5 - barPadding)
 			   .attr("height", function(d) {
 			   		return d.UniversityA;
 			   });
