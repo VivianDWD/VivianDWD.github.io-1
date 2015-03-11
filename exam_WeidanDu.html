@@ -94,7 +94,12 @@
 			   })
 			   .attr("width", width / 5 - barPadding)
 			   .attr("height", function(d) {
-			   		return d.UniversityA;
+			   		 if(i===3){
+					   return d.UniversityA;
+					   }
+					   else{
+						   return 0;
+						   }}//////////////////////////////////////////////////
 			   });
 				//.attr("r",function(d){
 				//	return rScale(d.AverageScore);
