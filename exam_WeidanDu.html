@@ -99,10 +99,13 @@
 					   }
 					   else{
 						   return 0;
-						   }}//////////////////////////////////////////////////
+						   }});//////////////////////////////////////////////////
+						  svg.selectAll("rect")
+						   .data(dataset)
+						   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
-			   		return i * (w / 5)+padding+barPadding;
+			   		return 1* (w / 5)+padding+barPadding;
 			   })
 			   .attr("y", function(d) {
 			   		return h - (d.UniversityB )-padding;
