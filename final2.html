@@ -50,13 +50,13 @@
 				ArraySenior=[datasetSenior[0]["University A"],datasetSenior[0]["University B"],datasetSenior[0]["University C"],datasetSenior[0]["University D"],datasetSenior[0]["University E"]];
 			
 						
-				var xScale =d3.scale.ordinal()
-				.domain(["University A","University B","University C","University D","University E"])
-				.rangeBand([padding,w-padding]);
-			//	var xScale = d3.scale.linear()
-              //       .domain([0, 20+d3.max(ArraySenior, function(d) { return parseFloat(d) } )
-			//		 ])
-              //       .range([padding, w-padding]);
+			//	var xScale =d3.scale.ordinal()
+			//	.domain(["University A","University B","University C","University D","University E"])
+			//	.rangeBand([padding,w-padding]);
+				var xScale = d3.scale.linear()
+                     .domain([0, 20+d3.max(ArraySenior, function(d) { return parseFloat(d) } )
+					 ])
+                     .range([padding, w-padding]);
 					 
 				var yScale = d3.scale.linear()
                      .domain([0, d3.max(ArraySenior, function(d) { return +parseFloat(d); })
