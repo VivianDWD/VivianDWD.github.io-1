@@ -104,7 +104,7 @@
 			   		return h -2.5*d[1]-padding;
 			   })
 			   .attr("width", (w-2*padding)/ 5 - barPadding)
-			   .attr("height", function(d,i) {
+			   .attr("height", function(d) {
 			   	return	2.5*d[1];
 					   }
 					
@@ -124,7 +124,7 @@
 			   		return xScale;
 			   })
 			   .attr("y", function(d) {
-			   		return yScale(d.AverageScore);
+			   		return yScale(d[1]);
 			   })
 			   .attr("font-family", "sans-serif")
 			   .attr("font-size", "11px")
