@@ -44,6 +44,7 @@
 			d3.json("exam1.json", function(data) {
    				 console.log(data);
 				 dataset = data;
+				 dataset2=[dataset[3]];
 			//d3.csv("HW3.csv", function(data) {
    			//	 console.log(data);
 			//	 dataset = data;
@@ -99,11 +100,7 @@
 					   }
 					   else{
 						   return 0;
-						   }});//////////////////////////////////////////////////
-					 svg.selectAll("rect")
-					 .data(dataset)
-					 .enter()
-			   .append("rect")
+						   }}//////////////////////////////////////////////////	 
 			   .attr("x", function(d, i) {
 			   		return (width / 5)+padding+barPadding;
 			   })
