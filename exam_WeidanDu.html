@@ -85,7 +85,7 @@
 				.style("background","rgb(240,200,255)"); 	 
 					 
 			svg.selectAll("rect")
-			   .data(dataset)
+			   .data(dataset2)
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
@@ -96,12 +96,12 @@
 			   })
 			   .attr("width", width / 5 - barPadding)
 			   .attr("height", function(d,i) {
-			   		 if(i===3){
+			   		// if(i===3){
 					   return d.UniversityA;
 					   }
-					   else{
-						   return 0;
-						   }})//////////////////////////////////////////////////
+					  // else{
+						//   return 0;
+						   )//////////////////////////////////////////////////
 			.append("rect")	 
 			.attr("x", function(d, i) {
 			return barPadding;
@@ -111,12 +111,10 @@
 			  })
 			  .attr("width", width / 5 - barPadding)
 			   .attr("height", function(d,i) {
-			   		 if(i===3){
+			   		
 				   return d.UniversityB;
-				   }
-					   else{
-					   return 0;
-				   }//////////////////////////////////////////////////
+				 
+					  //////////////////////////////////////////////////
 			 });
 				//.attr("r",function(d){
 				//	return rScale(d.AverageScore);
