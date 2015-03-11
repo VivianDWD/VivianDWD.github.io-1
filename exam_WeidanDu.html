@@ -93,7 +93,7 @@
 			   		return h - (d.UniversityA )-padding;
 			   })
 			   .attr("width", width / 5 - barPadding)
-			   .attr("height", function(d) {
+			   .attr("height", function(d,i) {
 			   		 if(i===3){
 					   return d.UniversityA;
 					   }
