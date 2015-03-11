@@ -41,6 +41,7 @@
 			var formatAsPercentage = d3.format(".1%");
 			var dataset;
 			var dataset2;
+			var dataset3;
 			//var text;
 			d3.json("exam1.json", function(data) {
    				 console.log(data);
@@ -96,7 +97,12 @@
 			   })
 			   .attr("width", width / 5 - barPadding)
 			   .attr("height", function(d,i) {
-			   		// if(i===3){
+			   		dataset3[0]=d.UniversityA;
+					dataset3[1]=d.UniversityB;
+					dataset3[2]=d.UniversityC;
+					dataset3[3]=d.UniversityD;
+					dataset3[4]=d.UniversityE;
+					// if(i===3){
 					   return d.UniversityA;
 					   }
 					  // else{
