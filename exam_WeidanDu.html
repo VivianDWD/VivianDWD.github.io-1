@@ -87,7 +87,7 @@
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
-			   		return i * (width / 5)+padding;
+			   		return i * (width / 5)+padding+barPadding;
 			   })
 			   .attr("y", function(d) {
 			   		return h - (d.UniversityA )-padding;
