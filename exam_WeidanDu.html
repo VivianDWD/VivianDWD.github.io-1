@@ -91,7 +91,7 @@
 					return i * (w / 5);
 			   })
 			   .attr("y", function(d) {
-			   		return h - (d.University A )* 4;
+			   		return h - (d.University A * 4);
 			   })
 			   .attr("width", w / 5 - barPadding)
 			   .attr("height", function(d,i) {
@@ -141,7 +141,7 @@
 			   .attr("y", function(d) {
 			   		return h - (d.University D * 4);
 			   })
-			   .attr("width", width / 5 - barPadding)
+			   .attr("width", w / 5 - barPadding)
 			   .attr("height", function(d,i) {
 				   if(i===3){
 					   return d.University D * 4;
@@ -152,12 +152,12 @@
 				.append("rect")
 			   .attr("x", function(d, i) {
 			   		//return i * (w / dataset.length);
-					return i * (5*width / 5);
+					return i * (5*w / 5);
 			   })
 			   .attr("y", function(d) {
 			   		return h - (d.University E * 4);
 			   })
-			   .attr("width", width / 5 - barPadding)
+			   .attr("width", w / 5 - barPadding)
 			   .attr("height", function(d,i) {
 				   if(i===3){
 					   return d.University E * 4;
