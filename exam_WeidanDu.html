@@ -40,13 +40,14 @@
 			var barPadding=5;
 			var formatAsPercentage = d3.format(".1%");
 			var dataset;
-			var dataset2;
-			var dataset3;
+			var datasetSenior;
+			var ArraySenior;
 			//var text;
 			d3.json("exam1.json", function(data) {
    				 console.log(data);
 				 dataset = data;
-				 dataset2=[dataset[3]];
+				datasetSenior=[dataset[3]];
+				ArraySenior=[datasetSenior[0].UniversityA,datasetSenior[0].UniversityB,datasetSenior[0].UniversityC,datasetSenior[0].UniversityD,datasetSenior[0].UniversityE];
 			//d3.csv("HW3.csv", function(data) {
    			//	 console.log(data);
 			//	 dataset = data;
@@ -86,22 +87,19 @@
 				.style("background","rgb(240,200,255)"); 	 
 					 
 			svg.selectAll("rect")
-			   .data(dataset2)
+			   .data(ArraySenior)
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
-			   		return padding+barPadding;
+			   		return i * (w / dataset.length);
 			   })
 			   .attr("y", function(d) {
-			   		return h - (d.UniversityA )-padding;
+			   		return h - (d * 4);
 			   })
 			   .attr("width", width / 5 - barPadding)
 			   .attr("height", function(d,i) {
-			   	return	dataset3[0]=d.UniversityA;
-				return	dataset3[1]=d.UniversityB;
-				return	dataset3[2]=d.UniversityC;
-				return	dataset3[3]=d.UniversityD;
-				return	dataset3[4]=d.UniversityE;
+			   	return	d;
+				
 					// if(i===3){
 					 //   d.UniversityA;
 					   }
