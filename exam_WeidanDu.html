@@ -101,21 +101,21 @@
 					   else{
 						   return 0;
 						   }}//////////////////////////////////////////////////	 
-			   .attr("x", function(d, i) {
-			   		return (width / 5)+padding+barPadding;
-			   })
-			   .attr("y", function(d) {
-			   		return h - (d.UniversityB )-padding;
-			   })
-			   .attr("width", width / 5 - barPadding)
-			   .attr("height", function(d,i) {
-			   		 if(i===3){
-					   return d.UniversityB;
-					   }
-					   else{
-						   return 0;
-						   }//////////////////////////////////////////////////
-			   });
+			//   .attr("x", function(d, i) {
+			//   		return (width / 5)+padding+barPadding;
+			////   })
+			//   .attr("y", function(d) {
+			//   		return h - (d.UniversityB )-padding;
+			//   })
+			//   .attr("width", width / 5 - barPadding)
+			//   .attr("height", function(d,i) {
+			//   		 if(i===3){
+			//		   return d.UniversityB;
+			//		   }
+			//		   else{
+			//			   return 0;
+			//			   }//////////////////////////////////////////////////
+			//   });
 				//.attr("r",function(d){
 				//	return rScale(d.AverageScore);
 					//});
