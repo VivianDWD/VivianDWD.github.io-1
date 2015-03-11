@@ -61,7 +61,7 @@
                      .range([padding, w-padding]);
 					 
 				var yScale = d3.scale.linear()
-                     .domain([0, 50+d3.max(ArraySenior, function(d) { return +parseFloat(d); })
+                     .domain([0, d3.max(ArraySenior, function(d) { return +parseFloat(d); })
 					 ])
                      .range([h-padding, padding]);	
 			//	var rScale = d3.scale.linear()
@@ -94,9 +94,9 @@
 			   		return i * (width/ArraySenior.length)+padding+barPadding;
 			   })
 			   .attr("y", function(d) {
-			   		return h -d-padding;
+			   		return h -3*d-padding;
 			   })
-			   .attr("width", (width-padding)/ 5 - barPadding)
+			   .attr("width", (width-2*padding)/ 5 - barPadding)
 			   .attr("height", function(d,i) {
 			   	return	d;
 					   }
