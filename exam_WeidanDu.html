@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>IE590_HW3</title>
+		<script type="text/javascript" src="file:///H|/都维丹2015spring/GitHub/VivianDWD.github.io/d3.js"></script>
+		<style type="text/css">
+			
+			
+			h1{
+			color: purple;
+			text-align: center;
+			}
+			   .axis path{
+				     fill:none;
+   					 stroke: purple;
+					 }
+			   .axis line {
+   					 fill: none;
+   					 stroke: purple;
+   					 shape-rendering: crispEdges;
+				}
+
+			  .axis text {
+  				  font-family: sans-serif;
+   				  font-size: 11px;
+				}
+		
+		</style>
+	
+    </head>
+	<body style="text-align:center">
+   
+
+   
+	<script type="text/javascript">
+			var w =550;
+			var h = 350;
+			var padding=50;
+			var formatAsPercentage = d3.format(".1%");
+			var dataset;
+			//var text;
+			
+			//d3.csv("HW3.csv", function(data) {
+			d3.json("http://hivelab.org/static/exam1.json",
+    function populate(data) {
+   				 console.log(data);
+				 dataset = data;
+			
+			//var max = d3.max(dataset, function(d) { return parseFloat(d.HoursPerYear); } )
+			//console.log(max);					
+		
+				var xScale = d3.scale.linear()
+                     .domain([0, 20+d3.max(dataset, function(d) { return parseFloat(d.HoursPerYear); } )
+					 ])
+                     .range([padding, w-padding]);
+					 
+				var yScale = d3.scale.linear()
+                     .domain([0, 50+d3.max(dataset, function(d) { return +parseFloat(d.AverageScore); })
+					 ])
+                     .range([h-padding, padding]);	
+				var rScale = d3.scale.linear()
+								 .domain([0, d3.max(dataset, function(d) { return parseFloat(d.AverageScore); })])
+								 .range([2, 5]);
+							
+				//Define X axis
+			var xAxis = d3.svg.axis()
+							  .scale(xScale)
+							  .orient("bottom")
+							  .ticks(10);
+							//  xAxis.tickFormat(formatAsPercentage);
+			//Define Y axis
+			var yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient("left")
+                  .ticks(10);				  			
+								 
+				var svg = d3.select("body")
+       		    .append("svg")
+        	    .attr("width", w)
+        	    .attr("height", h)
+				.style("background","rgb(240,200,255)"); 	 
+					 
+			svg.selectAll("circle")  // <-- No longer "rect"
+   				.data(dataset)
+   				.enter()
+   				.append("circle")     // <-- No longer "rect"
+				
+				.attr("cx", function(d) {
+       				 return xScale(d.HoursPerYear);
+   			  	 })
+ 			    .attr("cy", function(d) {
+     			     return yScale(d.AverageScore);
+  				 })
+  			   .attr("r", 4)
+			   
+			    .on("mouseover", function() {
+			   		 d3.select(this)
+					  .attr("fill", "red")
+					  .append("svg:title")
+ 					  .text(function(d) { return d.Country; });
+			 
+				
+			})
+			   .on("mouseout", function(d) {
+				   d3.select(this)
+				   		.transition()
+				   		.duration(150)
+						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
+			   });
+				//.attr("r",function(d){
+				//	return rScale(d.AverageScore);
+					//});
+			svg.selectAll("text")
+			   .data(dataset)
+			   .enter()
+			   .append("text")
+			 //  .text(function(d) {
+			   //		return d.Country;
+			   //})
+			   .attr("x", function(d) {
+			   		return xScale(d.HoursPerYear);
+			   })
+			   .attr("y", function(d) {
+			   		return yScale(d.AverageScore);
+			   })
+			   .attr("font-family", "sans-serif")
+			   .attr("font-size", "11px")
+			   .attr("fill", "purple");
+			
+			//Create X axis
+			svg.append("g")
+			.attr("class","axis")
+			.attr("transform", "translate(0," + (h - padding) + ")")
+			.call(xAxis);
+				
+			//Create Y axis
+			svg.append("g")
+   			 .attr("class", "axis")
+   			 .attr("transform", "translate(" + padding + ",0)")
+   			 .call(yAxis);	
+			//Add Lable of X
+			 svg.append("text")
+   			 .attr("transform", "translate(" + (w/2) + "," + (h-10) + ")")
+   			 .style("text-anchor", "middle")
+   			 .text("Instructional Time in Mathematics (hours per year)");
+					
+					//Add lable of Y
+			svg.append("text")
+   				.attr("transform", "rotate(-90)")
+    			.attr("y", 0 )
+ 			    .attr("x", 0 - (h/2))
+   				.attr("dy", "1em")
+   				.style("text-anchor" , "middle")
+    			.text("Average Score");	
+				
+		   svg.append("text")
+            .attr("x", (w / 2))
+            .attr("y",0.5*padding)
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .text("Average Score VS Instructional Time for Countries");
+				});
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~################################################################~
+		
+			d3.csv("HW3-2.csv", function(data2) {
+   				 console.log(data2);
+				 dataset2 = data2;
+			
+			//var max = d3.max(dataset, function(d) { return parseFloat(d.HoursPerYear); } )
+			//console.log(max);					
+		
+				var xScale2 = d3.scale.linear()
+                     .domain([80, 20+d3.max(dataset2, function(d2) { return parseFloat(d2.HoursPerYear2); } )
+					 ])
+                     .range([padding, w-padding]);
+					 
+				var yScale2 = d3.scale.linear()
+                     .domain([300, 50+d3.max(dataset2, function(d2) { return +parseFloat(d2.AverageScore2); })
+					 ])
+                     .range([h-padding, padding]);	
+			
+							
+				//Define X axis
+			var xAxis2 = d3.svg.axis()
+							  .scale(xScale2)
+							  .orient("bottom")
+							  .ticks(10);
+							//  xAxis.tickFormat(formatAsPercentage);
+			//Define Y axis
+			var yAxis2 = d3.svg.axis()
+                  .scale(yScale2)
+                  .orient("left")
+                  .ticks(10);				  			
+								 
+				var svg2 = d3.select("body")
+       		    .append("svg")
+        	    .attr("width", w)
+        	    .attr("height", h)
+				.style("background","rgb(240,220,255)");	 
+					 
+			svg2.selectAll("circle")  // <-- No longer "rect"
+   				.data(dataset2)
+   				.enter()
+   				.append("circle")     // <-- No longer "rect"
+				
+				.attr("cx", function(d2) {
+       				 return xScale2(d2.HoursPerYear2);
+   			  	 })
+ 			    .attr("cy", function(d2) {
+     			     return yScale2(d2.AverageScore2);
+  				 })
+  			   .attr("r", 4);
+				//.attr("r",function(d){
+				//	return rScale(d.AverageScore);
+					//});
+			svg2.selectAll("text")
+			   .data(dataset2)
+			   .enter()
+			   .append("text")
+			   .attr("transform","translate(5,5)")
+			   .text(function(d2) {
+			   		return d2.EduSystem;
+			   })
+			   .attr("x", function(d2) {
+			   		return xScale2(d2.HoursPerYear2);
+			   })
+			   .attr("y", function(d2) {
+			   		return yScale2(d2.AverageScore2);
+			   })
+			   .attr("font-family", "sans-serif")
+			   .attr("font-size", "11px")
+			   .attr("fill", "purple");
+			
+			//Create X axis
+			svg2.append("g")
+			.attr("class","axis")
+			.attr("transform", "translate(0," + (h - padding) + ")")
+			.call(xAxis2);
+				
+			//Create Y axis
+			svg2.append("g")
+   			 .attr("class", "axis")
+   			 .attr("transform", "translate(" + padding + ",0)")
+   			 .call(yAxis2);	
+			//Add Lable of X
+			 svg2.append("text")
+   			 .attr("transform", "translate(" + (w/2) + "," + (h-10) + ")")
+   			 .style("text-anchor", "middle")
+   			 .text("Instructional Time in Mathematics (hours per year)");
+					
+					//Add lable of Y
+			svg2.append("text")
+   				.attr("transform", "rotate(-90)")
+    			.attr("y", 0 )
+ 			    .attr("x", 0 - (h/2))
+   				.attr("dy", "1em")
+   				.style("text-anchor" , "middle")
+    			.text("Average Score");	
+			
+			
+			svg2.append("text")
+            .attr("x", (w / 2))
+            .attr("y",0.5*padding)
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .text("Average Score VS Instructional Time for Benchmarking Education Systems");
+				});
+		
+		
+			
+		</script> 
+        <div>
+       <img src="file:///H|/都维丹2015spring/GitHub/VivianDWD.github.io/Google.jpg" width="1000" height="300">  
+       </div>  
+	</body>
+</html>
