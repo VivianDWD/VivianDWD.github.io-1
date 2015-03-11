@@ -91,14 +91,14 @@
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
-			   		return i * (width/ArraySenior.length)+padding+barPadding;
+			   		return i * (width-padding/ArraySenior.length)+padding+barPadding;
 			   })
 			   .attr("y", function(d) {
-			   		return 3*(h-d)-padding;
+			   		return h-d-padding;
 			   })
 			   .attr("width", (width-2*padding)/ 5 - barPadding)
 			   .attr("height", function(d,i) {
-			   	return	d;
+			   	return	3*d;
 					   }
 					
 						   );//////////////////////////////////////////////////
