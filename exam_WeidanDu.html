@@ -35,7 +35,6 @@
    
 	<script type="text/javascript">
 			var w =550;
-			width=500;
 			var h = 350;
 			var padding=50;
 			var formatAsPercentage = d3.format(".1%");
@@ -91,80 +90,32 @@
 					return i * (w / 5);
 			   })
 			   .attr("y", function(d) {
-			   		return h - (d.University A * 4);
+			   		return h - (d.University* 4);
 			   })
 			   .attr("width", w / 5 - barPadding)
 			   .attr("height", function(d,i) {
 				   if(i===3){
-					   return d.University A * 4;
+					   return d.University * 4;
 					   }
 					   else{
 						   return 0;
-						   }}//////////////////////////////////////////////////
-			      .append("rect")
-			   .attr("x", function(d, i) {
+						   }}
+			    .append("rect")
+			    .attr("x", function(d, i) {
 			   		//return i * (w / dataset.length);
-					return i * (2*width / 5);
+					return i * (w / 5);
 			   })
 			   .attr("y", function(d) {
-			   		return h - (d.University b * 4);
-			   })
-			   .attr("width", width / 5 - barPadding)
-			   .attr("height", function(d,i) {
-				   if(i===3){
-					   return d.University b * 4;
-					   }
-					   else{
-						   return 0;
-						   }}//////////////////////////////////////////////////
-				.append("rect")
-			   .attr("x", function(d, i) {
-			   		//return i * (w / dataset.length);
-					return i * (3*width / 5);
-			   })
-			   .attr("y", function(d) {
-			   		return h - (d.University C * 4);
-			   })
-			   .attr("width", width / 5 - barPadding)
-			   .attr("height", function(d,i) {
-				   if(i===3){
-					   return d.University C * 4;
-					   }
-					   else{
-						   return 0;
-						   }}//////////////////////////////////////////////////
-				.append("rect")
-			   .attr("x", function(d, i) {
-			   		//return i * (w / dataset.length);
-					return i * (4* width / 5);
-			   })
-			   .attr("y", function(d) {
-			   		return h - (d.University D * 4);
+			   		return h - (d * 4);
 			   })
 			   .attr("width", w / 5 - barPadding)
 			   .attr("height", function(d,i) {
 				   if(i===3){
-					   return d.University D * 4;
+					   return d.University B * 4;
 					   }
 					   else{
 						   return 0;
-						   }}//////////////////////////////////////////////////
-				.append("rect")
-			   .attr("x", function(d, i) {
-			   		//return i * (w / dataset.length);
-					return i * (5*w / 5);
-			   })
-			   .attr("y", function(d) {
-			   		return h - (d.University E * 4);
-			   })
-			   .attr("width", w / 5 - barPadding)
-			   .attr("height", function(d,i) {
-				   if(i===3){
-					   return d.University E * 4;
-					   }
-					   else{
-						   return 0;
-						   }}//////////////////////////////////////////////////
+						   }
 			   		
 			   });
 					 
