@@ -48,12 +48,8 @@
 				 dataset = data;
 				datasetSenior=[dataset[3]];
 				ArraySenior=[datasetSenior[0]["University A"],datasetSenior[0]["University B"],datasetSenior[0]["University C"],datasetSenior[0]["University D"],datasetSenior[0]["University E"]];
-			//d3.csv("HW3.csv", function(data)
-   			//	 console.log(data);
-			//	 dataset = data;
 			
-			//var max = d3.max(dataset, function(d) { return parseFloat(d.HoursPerYear); } )
-			//console.log(max);					
+						
 				var xScale =d3.scale.ordinal()
 				.domain(["University A","University B","University C","University D","University E"])
 				.rangeBand([padding,w-padding]);
@@ -66,16 +62,12 @@
                      .domain([0, d3.max(ArraySenior, function(d) { return +parseFloat(d); })
 					 ])
                      .range([h-padding, padding]);	
-			//	var rScale = d3.scale.linear()
-			//					 .domain([0, d3.max(ArraySenior, function(d) { return parseFloat(d); })])
-				//				 .range([2, 5]);
-							
-				//Define X axis
+			
 			var xAxis = d3.svg.axis()
 							  .scale(xScale)
 							  .orient("bottom")
-							  .ticks(10);
-							//  xAxis.tickFormat(formatAsPercentage);
+							  .ticks(5);
+							
 			//Define Y axis
 			var yAxis = d3.svg.axis()
                   .scale(yScale)
@@ -105,16 +97,13 @@
 					
 						   );//////////////////////////////////////////////////
 			
-				//.attr("r",function(d){
-				//	return rScale(d.AverageScore);
+			
 					
 			svg.selectAll("text")
 			   .data(dataset)
 			   .enter()
 			   .append("text")
-			 //  .text(function(d) {
-			   //		return d.Country;
-			   //})
+			
 			   .attr("x", function(d) {
 			   		return xScale(d.HoursPerYear);
 			   })
@@ -159,9 +148,6 @@
             .text("Number of Senior IE Students in the Five Universities");
 				});
 		
-		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~################################################################~
-		
-			
 		
 			
 		</script> 
