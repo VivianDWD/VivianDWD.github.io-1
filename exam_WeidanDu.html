@@ -99,6 +99,21 @@
 					   }
 					   else{
 						   return 0;
+						   }}//////////////////////////////////////////////////
+			   .append("rect")
+			   .attr("x", function(d, i) {
+			   		return i * (w / 5)+padding+barPadding;
+			   })
+			   .attr("y", function(d) {
+			   		return h - (d.UniversityB )-padding;
+			   })
+			   .attr("width", width / 5 - barPadding)
+			   .attr("height", function(d,i) {
+			   		 if(i===3){
+					   return d.UniversityB;
+					   }
+					   else{
+						   return 0;
 						   }//////////////////////////////////////////////////
 			   });
 				//.attr("r",function(d){
