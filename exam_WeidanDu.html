@@ -91,7 +91,7 @@
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
-			   		return i * (w / ArraySenior.length)+padding+barPadding;
+			   		return i * (width/ArraySenior.length)+padding+barPadding;
 			   })
 			   .attr("y", function(d) {
 			   		return h -d-padding;
@@ -138,7 +138,7 @@
 			 svg.append("text")
    			 .attr("transform", "translate(" + (w/2) + "," + (h-10) + ")")
    			 .style("text-anchor", "middle")
-   			 .text("Instructional Time in Mathematics (hours per year)");
+   			 .text("University");
 					
 					//Add lable of Y
 			svg.append("text")
@@ -147,14 +147,14 @@
  			    .attr("x", 0 - (h/2))
    				.attr("dy", "1em")
    				.style("text-anchor" , "middle")
-    			.text("Average Score");	
+    			.text("Number of People");	
 				
 		   svg.append("text")
             .attr("x", (w / 2))
             .attr("y",0.5*padding)
             .attr("text-anchor", "middle")
             .style("font-size", "16px")
-            .text("Average Score VS Instructional Time for Countries");
+            .text("Number of Senior IE Students in the Five Universities");
 				});
 		
 		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~################################################################~
