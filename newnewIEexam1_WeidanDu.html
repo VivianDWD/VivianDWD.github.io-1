@@ -60,13 +60,13 @@
 			//var max = d3.max(dataset, function(d) { return parseFloat(d.HoursPerYear); } )
 			//console.log(max);					
 				var xScale =d3.scale.ordinal()
-			//	.domain(["University A","University B","University C","University D","University E"])
+			.domain(SrraySenior.map(function(d){return d[0]}))	//	.domain(["University A","University B","University C","University D","University E"])
 			.rangeBand([padding,w-padding]);
 			//	var xScale = d3.scale.linear()
               //       .domain([0, 20+d3.max(ArraySenior, function(d) { return parseFloat(d) } )
 				//	 ])
                   //   .range([padding, w-padding]);
-			x.domain(SrraySenior.map(function(d){return d[0]}))		 
+				 
 				var yScale = d3.scale.linear()
                      .domain([0, d3.max(ArraySenior, function(d) { return +parseFloat(d[1]); })
 					 ])
