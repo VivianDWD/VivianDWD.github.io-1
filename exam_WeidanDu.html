@@ -34,6 +34,7 @@
    
 	<script type="text/javascript">
 			var w =550;
+			var width=500;
 			var h = 350;
 			var padding=50;
 			var formatAsPercentage = d3.format(".1%");
@@ -80,32 +81,19 @@
         	    .attr("height", h)
 				.style("background","rgb(240,200,255)"); 	 
 					 
-			svg.selectAll("circle")  // <-- No longer "rect"
-   				.data(dataset)
-   				.enter()
-   				.append("circle")     // <-- No longer "rect"
-				
-				.attr("cx", function(d) {
-       				 return xScale(d.HoursPerYear);
-   			  	 })
- 			    .attr("cy", function(d) {
-     			     return yScale(d.AverageScore);
-  				 })
-  			   .attr("r", 4)
-			   
-			    .on("mouseover", function() {
-			   		 d3.select(this)
-					  .attr("fill", "red")
-					  .append("svg:title")
- 					  .text(function(d) { return d.Country; });
-			 
-				
-			})
-			   .on("mouseout", function(d) {
-				   d3.select(this)
-				   		.transition()
-				   		.duration(150)
-						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
+			svg.selectAll("rect")
+			   .data(dataset)
+			   .enter()
+			   .append("rect")
+			   .attr("x", function(d, i) {
+			   		return i * (width / 5);
+			   })
+			   .attr("y", function(d) {
+			   		return h - (d.UniversityA );
+			   })
+			   .attr("width", w / 5 - barPadding)
+			   .attr("height", function(d) {
+			   		return d.UniversityA;
 			   });
 				//.attr("r",function(d){
 				//	return rScale(d.AverageScore);
