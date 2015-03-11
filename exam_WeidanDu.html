@@ -56,17 +56,17 @@
 			//console.log(max);					
 		
 				var xScale = d3.scale.linear()
-                     .domain([0, 20+d3.max(dataset, function(d) { return parseFloat(d.HoursPerYear); } )
+                     .domain([0, 20+d3.max(ArraySenior, function(d) { return parseFloat(d) } )
 					 ])
                      .range([padding, w-padding]);
 					 
 				var yScale = d3.scale.linear()
-                     .domain([0, 50+d3.max(dataset, function(d) { return +parseFloat(d.AverageScore); })
+                     .domain([0, 50+d3.max(ArraySenior, function(d) { return +parseFloat(d); })
 					 ])
                      .range([h-padding, padding]);	
-				var rScale = d3.scale.linear()
-								 .domain([0, d3.max(dataset, function(d) { return parseFloat(d.AverageScore); })])
-								 .range([2, 5]);
+			//	var rScale = d3.scale.linear()
+			//					 .domain([0, d3.max(ArraySenior, function(d) { return parseFloat(d); })])
+				//				 .range([2, 5]);
 							
 				//Define X axis
 			var xAxis = d3.svg.axis()
@@ -91,7 +91,7 @@
 			   .enter()
 			   .append("rect")
 			   .attr("x", function(d, i) {
-			   		return i * (w / dataset.length);
+			   		return i * (w / ArraySenior.length);
 			   })
 			   .attr("y", function(d) {
 			   		return h - (d * 4);
@@ -99,27 +99,10 @@
 			   .attr("width", width / 5 - barPadding)
 			   .attr("height", function(d,i) {
 			   	return	d;
-				
-					// if(i===3){
-					 //   d.UniversityA;
 					   }
-					  // else{
-						//   return 0;
-						   )//////////////////////////////////////////////////
-			.append("rect")	 
-			.attr("x", function(d, i) {
-			return barPadding;
-			  })
-			   .attr("y", function(d) {
-			   		return h - (d.UniversityB )-padding;
-			  })
-			  .attr("width", width / 5 - barPadding)
-			   .attr("height", function(d,i) {
-			   		
-				   return d.UniversityB;
-				 
-					  //////////////////////////////////////////////////
-			 });
+					
+						   );//////////////////////////////////////////////////
+			
 				//.attr("r",function(d){
 				//	return rScale(d.AverageScore);
 					
