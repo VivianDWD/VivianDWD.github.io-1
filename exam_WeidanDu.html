@@ -43,12 +43,12 @@
 			var datasetSenior;
 			var ArraySenior;
 			//var text;
-			d3.json("exam1.json", function(data) {
+			d3.json("https://hivelab.org/static/exam1.json", function(data) {
    				 console.log(data);
 				 dataset = data;
 				datasetSenior=[dataset[3]];
-				ArraySenior=[datasetSenior[0].UniversityA,datasetSenior[0].UniversityB,datasetSenior[0].UniversityC,datasetSenior[0].UniversityD,datasetSenior[0].UniversityE];
-			//d3.csv("HW3.csv", function(data) {
+				ArraySenior=[datasetSenior[0]["University A"],datasetSenior[0]["University B"],datasetSenior[0]["University C"],datasetSenior[0]["University D"],datasetSenior[0]["University E"]];
+			//d3.csv("HW3.csv", function(data)
    			//	 console.log(data);
 			//	 dataset = data;
 			
