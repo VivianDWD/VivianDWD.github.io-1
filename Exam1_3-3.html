@@ -139,21 +139,14 @@ state.selectAll("rect")
             })
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.y1); })
-      .attr("height", function(d) { down[k]=d.y1;k++; return y(d.y0) - y(d.y1);})
+      .attr("height", function(d) {  return y(d.y0) - y(d.y1);})
       .style("fill", function(d) { return color(d.Years); })
 
 
     .on("click", function(d) {
         if(d.Years==="Freshman"){//Do something mundane and annoying on click
-        alert("Hey, we are Freshman!");
+        //alert("Hey, we are Freshman!");
 		
-	/*	state.selectAll("rect")
-      .data(data)
-    .enter().append("rect")
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.ages[t].y1)-(d.Freshman); })
-      .attr("height", function(d) { return y(d.ages[t].y0) - y(d.ages[t].y1);})
-      .style("fill", function(d) { return color(d.ages[t].Years); t++;})*/
 //	console.log(down);	
 svg.selectAll("rect")
            //.data(dataset)
@@ -163,7 +156,7 @@ svg.selectAll("rect")
       .style("fill", function(d) { return color(d.Years); })
 		}
 		else if(d.Years==="Sophomore"){
-		alert("Hey, we are Sophomore!");	
+		//alert("Hey, we are Sophomore!");	
 		svg.selectAll("rect")
 		   .transition()
           .attr("y", function(d) { return y(d.y1-d.Freshman); })
@@ -172,7 +165,7 @@ svg.selectAll("rect")
 		
 			}
 		else if(d.Years==="Junior"){
-		alert("Hey, we are Junior!");	
+		//alert("Hey, we are Junior!");	
 		svg.selectAll("rect")
 		   .transition()
           .attr("y", function(d) { return y(d.y1-d.Freshman-d.Sophomore); })
@@ -181,7 +174,7 @@ svg.selectAll("rect")
 		
 			}
 		else if(d.Years==="Senior"){
-		alert("Hey, we are Senior!");	
+		//alert("Hey, we are Senior!");	
 		svg.selectAll("rect")
 		   .transition()
           .attr("y", function(d) { return y(d.y1-d.Freshman-d.Sophomore-d.Junior); })
