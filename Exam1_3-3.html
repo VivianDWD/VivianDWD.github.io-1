@@ -129,8 +129,7 @@ d3.json("https://hivelab.org/static/exam1.json", function(data0) {
       .attr("class", "g")
       .attr("transform", function(d) { return "translate(" + x(d.name) + ",0)"; });
 var down=new Array();
-var k=0;
-var t=0; 
+ 
 state.selectAll("rect")
       .data(function(d) { return d.ages; })
     .enter().append("rect")
