@@ -136,7 +136,7 @@ console.log(root);
 			   		 d3.select(this)
 					  //.attr("fill", "red")
 					  .append("svg:title")
- 					  .text(function(d) { return d.state; });})
+ 					  .text(function(d) { return d.parent.name; });})
 					   .on("mouseout", function(d) {
 				   d3.select(this)
 				   		.transition()
