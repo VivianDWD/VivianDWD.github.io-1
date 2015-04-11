@@ -128,20 +128,23 @@ console.log(root);
       .attr("class", "node")
       .call(position)//dxdy
       
-	 .on("mouseover", function(d) {
+	
+			   // .text(function(d) { if(d.dx>30){return d.children ? d.name: null;} })
+	.text(function(d) { return d.children ? d.name: null; })
+	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; })
+	 
+	  .on("mouseover", function(d) {
 			   		 d3.select(this)
 					  //.attr("fill", "red")
 					  .append("svg:title")
- 					  .text(function(d) { console.log(d.parent.name);return d.parent.name; });})
+ 					  .text(function(d) { console.log(d.parent.name);return d.parent.name; });
+					  })
 	.on("mouseout", function(d) {
 				   d3.select(this)
 				   		.transition()
 				   		.duration(150)
 						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
-			   })
-			   // .text(function(d) { if(d.dx>30){return d.children ? d.name: null;} })
-	.text(function(d) { return d.children ? d.name: null; })
-	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; });
+			   });
 	 
 	
 console.log(node);
