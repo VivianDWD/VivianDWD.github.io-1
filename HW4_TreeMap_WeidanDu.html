@@ -127,10 +127,16 @@ console.log(root);
     .enter().append("div")
       .attr("class", "node")
       .call(position)//dxdy
-    
+      //.style("background", function(d) { return d.children ? color(d.name) : null; })
+	 // .style("background", function(d) { console.log(d);return color(d.state); })
+	 
+////////.style("background", function(d) { return d.parent ? null : color(d.state); })
+	 // .style("background", function(d) { if(d.depth=3){return color(d.name);}})
+	 // .style("fill",function(d,i){ return color(d.name); })
+     // .text(function(d) { return d.children ? null : d.name; });
 	 .text(function(d) { return d.children ? d.name: null; })
 	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; });
-
+console.log(node);
   d3.selectAll("input").on("change", function change() {
     //var value = this.value === "count"
      //   ? function() { return 1; }
