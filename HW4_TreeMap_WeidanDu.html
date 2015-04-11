@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HW4_Treemap_Weidan</title>
+<h2>Sales/ Profit of Different Drinks in Different States in U.S. </h1>
+</head>
+<style>
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  width: 960px;
+}
+
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.node {
+  border: solid 1px white;
+  font: 10px sans-serif;
+  line-height: 12px;
+  overflow: hidden;
+  position: absolute;
+  text-indent: 2px;
+}
+
+</style>
+<form>
+  <label><input type="radio" name="mode" value="profit" checked> Profit</label>
+  <label><input type="radio" name="mode" value="sales"> Sales</label>
+</form>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var margin = {top: 40, right: 10, bottom: 10, left: 10},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var color = d3.scale.category20c();
+
+var treemap = d3.layout.treemap()
+    .size([width, height])
+   .sticky(true)
+    .value(function(d) { return d.sales; });//return final number
+	
+	
+
+var div = d3.select("body").append("div")
+    .style("position", "relative")
+    .style("width", (width + margin.left + margin.right) + "px")
+    .style("height", (height + margin.top + margin.bottom) + "px")
+    .style("left", margin.left + "px")
+    .style("top", margin.top + "px");
+
+//##############################################################################################
+
+function reSortRoot(root,value_key) {
+		//console.log("Calling");
+		for (var key in root) {
+			if (key == "key") {
+				root.name = root.key;
+			/*	delete root.key;
+				delete root.x;
+				delete root.y;
+				delete root.value;*/
+			}
+			if (key == "values") {
+				root.children = [];
+				for (item in root.values) {
+					root.children.push(reSortRoot(root.values[item],value_key));
+					delete root.x;
+			/*	delete root.y;
+				delete root.value;*/
+				}
+				delete root.values;
+			/*	delete root.x;
+				delete root.y;
+				delete root.value;*/
+			}
+			if (key == value_key) {
+				root.value = parseFloat(root[value_key]);
+				//delete root[value_key];
+				delete root.x;
+				delete root.y;
+				delete root.value;
+				delete value_key.children;
+			}
+		}
+		return root;
+		
+	}
+//###############################################################################################*/
+
+d3.csv("https://hivelab.org/static/coffee.csv", function(csv_data) {
+   				 console.log(csv_data);
+	//for(var i=0;i<csv_data.length;i++){
+	//delete csv_data[i].caffeination;
+//	delete csv_data[i].date;
+	//delete csv_data[i].type;			 
+//	}
+	var nested_data = d3.nest()
+		//.key(function(d) { return d.region; })
+		.key(function(d) { return d.state; })
+		.key(function(d) { return d.category; })
+		.entries(csv_data);				 
+	//	all={"key":nested_data};	
+		
+		//console.log(all);	 
+var root ={};
+root.key = "Data";
+root.values = nested_data;
+console.log(root.values);
+
+root = reSortRoot(root,"sales");
+//loadData(root);
+console.log(root);
+
+//d3.json("flare.json", function(error, root) {
+	//console.log(root);//
+  var node = div.datum(root).selectAll(".node")//Gets or sets the bound data for each selected element. Unlike the selection.data method, this method does not compute a join (and thus does not compute enter and exit selections). This method is implemented on top of selection.property:
+      .data(treemap.nodes)//add depth, dxdy....
+    .enter().append("div")
+      .attr("class", "node")
+      .call(position)//dxdy
+      //.style("background", function(d) { return d.children ? color(d.name) : null; })
+	 // .style("background", function(d) { console.log(d);return color(d.state); })
+	 
+////////.style("background", function(d) { return d.parent ? null : color(d.state); })
+	 // .style("background", function(d) { if(d.depth=3){return color(d.name);}})
+	 // .style("fill",function(d,i){ return color(d.name); })
+     // .text(function(d) { return d.children ? null : d.name; });
+	 .text(function(d) { return d.children ? d.name: null; })
+	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; });
+console.log(node);
+  d3.selectAll("input").on("change", function change() {
+    //var value = this.value === "count"
+     //   ? function() { return 1; }
+     //   : function(d) { return d.profit; };
+	 var value;
+	 if(this.value==='profit'){
+		 value = function(d){return d.sales;}
+		 }else{
+			 value = function(d){return d.profit;}
+			 }
+		//alert(this.value);
+
+    node
+        .data(treemap.value(value).nodes)
+      .transition()
+        .duration(1000)
+        .call(position);
+  });
+  
+});
+
+function accumulate(d) {
+	return d.children
+	? d.value = d.children.reduce(function(p, v) { return p + accumulate(v); }, 0)
+	: d.value;
+}
+function position() {
+	
+this.style("left", function(d) { if(d.depth<3){return d.x + "px"; }})
+      .style("top", function(d) { if(d.depth<3){return d.y + "px"; }})
+      .style("width", function(d) { if(d.depth<3){return Math.max(0, d.dx - 1) + "px"; }})
+      .style("height", function(d) {if(d.depth<3){ return Math.max(0, d.dy - 1) + "px";}});
+	  
+/*	this.style("left", function(d) { return d.x + "px"; })
+      .style("top", function(d) { return d.y + "px"; })
+      .style("width", function(d) { return Math.max(0, d.dx - 1) + "px";})
+      .style("height", function(d) { return Math.max(0, d.dy - 1) + "px";});*/
+}
+
+</script>
