@@ -136,7 +136,7 @@ console.log(root);
      // .text(function(d) { return d.children ? null : d.name; });
 	 .text(function(d) { return d.children ? d.name: null; })
 	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; });
-console.log(node);
+
   d3.selectAll("input").on("change", function change() {
     //var value = this.value === "count"
      //   ? function() { return 1; }
