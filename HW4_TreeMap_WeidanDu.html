@@ -128,7 +128,7 @@ console.log(root);
       .attr("class", "node")
       .call(position)//dxdy
       
-	 .text(function(d) { if(d.dx>10){return d.children ? d.name: null;} })
+	 .text(function(d) { if(d.dx>20){return d.children ? d.name: null;} })
 	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; });
 console.log(node);
   d3.selectAll("input").on("change", function change() {
