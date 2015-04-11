@@ -31,8 +31,8 @@ form {
 
 </style>
 <form>
-  <label><input type="radio" name="mode" value="value1" checked> Profit</label>
-  <label><input type="radio" name="mode" value="value2"> Sales</label>
+  <label><input type="radio" name="mode" value="profit" checked> Profit</label>
+  <label><input type="radio" name="mode" value="sales"> Sales</label>
 </form>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
@@ -127,6 +127,7 @@ console.log(root);
     .enter().append("div")
       .attr("class", "node")
       .call(position)//dxdy
+    
 	 .text(function(d) { return d.children ? d.name: null; })
 	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; });
 
@@ -135,7 +136,7 @@ console.log(root);
      //   ? function() { return 1; }
      //   : function(d) { return d.profit; };
 	 var value;
-	 if(this.value==='value1'){
+	 if(this.value==='profit'){
 		 value = function(d){return d.sales;}
 		 }else{
 			 value = function(d){return d.profit;}
