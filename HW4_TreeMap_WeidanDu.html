@@ -130,7 +130,19 @@ console.log(root);
       
 	// .text(function(d) { if(d.dx>30){return d.children ? d.name: null;} })
 	.text(function(d) { return d.children ? d.name: null; })
-	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; });
+	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; })
+	 
+	 .on("mouseover", function() {
+			   		 d3.select(this)
+					  //.attr("fill", "red")
+					  .append("svg:title")
+ 					  .text(function(d) { return d.state; });})
+					   .on("mouseout", function(d) {
+				   d3.select(this)
+				   		.transition()
+				   		.duration(150)
+						.attr("fill", "rgb(0, 0, " + (d * 10) + ")");
+			   });
 console.log(node);
   d3.selectAll("input").on("change", function change() {
     //var value = this.value === "count"
