@@ -132,16 +132,16 @@ console.log(root);
 	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; })
 	
      .on("click", function(d) { alert("The state is:"+d.parent.name); })
-	 .append("text")
+	
+				
+	  .on("mouseover", function(d) {
+			   		 d3.select(this)
+					   .append("text")
             .attr("x", 40)
             .attr("y",20)
             .attr("text-anchor", "middle")
             .style("font-size", "24px")
-            .text("Average Score VS Instructional Time for Countries")
-				
-	  .on("mouseover", function(d) {
-			   		 d3.select(this)
-					  //.attr("fill", "red")
+            .text("Average Score VS Instructional Time for Countries")//.attr("fill", "red")
 					  .append("svg:title")
  					  .text(function(d) { console.log(d.parent.name);return "the state is:"+d.parent.name; });
 					  })
