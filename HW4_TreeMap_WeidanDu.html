@@ -131,7 +131,7 @@ console.log(root);
 	.text(function(d) { return d.children ? d.name: null; })
 	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; })
 	
-     .on("click", function(d) { alert("hello"); })
+     .on("click", function(d) { alert("The state is:"+d.parent.name); })
 	  .on("mouseover", function(d) {
 			   		 d3.select(this)
 					  //.attr("fill", "red")
