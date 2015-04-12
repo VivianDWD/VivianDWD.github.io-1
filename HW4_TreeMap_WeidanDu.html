@@ -139,7 +139,7 @@ console.log(root);
 			   		 d3.select(this)
 					   
 					  .append("svg:title")
- 					  .text(function(d) { console.log(d.parent.name);return "the state is:"+d.parent.name; });
+ 					  .text(function(d) {return "the state is:"+d.parent.name; });
 					  })
 	.on("mouseout", function(d) {
 				   d3.select(this)
