@@ -127,15 +127,11 @@ console.log(root);
     .enter().append("div")
       .attr("class", "node")
       .call(position)//dxdy
-      
-	
-			   // .text(function(d) { if(d.dx>30){return d.children ? d.name: null;} })
+      		   // .text(function(d) { if(d.dx>30){return d.children ? d.name: null;} })
 	.text(function(d) { return d.children ? d.name: null; })
-	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; });
+	 .style("background", function(d) { return d.parent ? color(d.parent.name) : null; })
 	
-	 node.selectAll("div")
-	 .data(treemap.nodes)//add depth, dxdy....
-    .enter()
+
 	  .on("mouseover", function(d) {
 			   		 d3.select(this)
 					  //.attr("fill", "red")
