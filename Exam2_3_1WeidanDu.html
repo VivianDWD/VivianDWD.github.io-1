@@ -96,9 +96,10 @@ function tabulate(data, columns) {
      					d3.select(this).style({"background": "#2EFE9A"});
      				})
 		.on("mouseout", function(d, i){
-		console.log(this.style.background);
+			console.log(this.style.background);
 			if(green===1){green=0;}
-			else if(green===2){d3.select(this).style({"background": "#2EFE9A"});green=0;}
+			else if(green===2){
+				d3.select(this).style({"background": "#2EFE9A"});green=0;}
 			else{
 				green=0;
      			d3.select(this).style({"background": "white"});}
@@ -109,18 +110,13 @@ function tabulate(data, columns) {
     var cells = rows.selectAll("td")
         .data(function(row) {
             return columns.map(function(column) {
-                return {column: column, value: row[column]};
+            return {column: column, value: row[column]};
             });
         })
         .enter()
         .append("td")
 		.text(function(d) { return d.value; })
-     //   .attr("style", "font-family: Courier");// sets the font style
-        //    .html(function(d) { return d.value; })
- //   .on("mouseover", function(d, i){
-     		//			d3.select(this).style({"opacity": "yellow"});
-     			//	})
-     			//	.on("mouseout", mouseOut);
+     
 //After mouseover, return the cells to their original colour
      		
     return table;
