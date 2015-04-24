@@ -114,11 +114,6 @@ var key="ItemNo";
 			//console.log(a[i]);
 			});}
 		
-/*			tbody.selectAll("tr").sort(function(a,b){
-    return d3.ascending(a.A, b.A);
-	
-	console.log(a[i]);
-  });*/
 		
 			d3.selectAll("th").style({"background": "#A4A4A4"});
      					d3.select(this).style({"background": "#AEB404"});
@@ -162,15 +157,8 @@ var key="ItemNo";
         })
         .enter()
         .append("td")
-		.text(function(d) { return d.value; })
-     //   .attr("style", "font-family: Courier");// sets the font style
-        //    .html(function(d) { return d.value; })
- //   .on("mouseover", function(d, i){
-     		//			d3.select(this).style({"opacity": "yellow"});
-     			//	})
-     			//	.on("mouseout", mouseOut);
-//After mouseover, return the cells to their original colour
-     		
+		.text(function(d) { return d.value; });
+        		
     return table;
 }
 
