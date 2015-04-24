@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body {
+font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+color: #000000;
+}
+h2 {
+text-align: center
+}
+table
+{	
+border-spacing:0px;	
+}
+
+th {
+	font-size:20px;
+	font-family:"Lucida Console", Monaco, monospace
+	color: #000000;
+	font-weight: bold;
+	text-align: right;
+	border:solid black 1px;
+	padding: 5px;
+	background-color: #A4A4A4;
+	margin: 0px;	
+}
+td {
+	width: 200px;
+	font-weight: bold;
+	text-align: right;
+	border:solid black 1px;
+	padding: 5px;
+	margin: 0px;
+}
+
+</style>
+<body>
+<p  align="center">Exam2: Interactive Spreadsheet</p>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+// Set the dimensions of the canvas / graph
+var margin = {top: 30, right: 20, bottom: 30, left: 10},
+    width = 600 - margin.left - margin.right,
+    height = 40 - margin.top - margin.bottom;
+
+// Adds the svg canvas
+var firstOne=0;
+var green=0;
+var svg = d3.select("body")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height+margin.top)
+    .append("g")
+        .attr("transform", 
+              "translate(" + margin.left + "," + margin.top + ")");	
+			  
+d3.json("https://hivelab.org/static/exam2.json", function(data) {
+   	firstOne=data[0];			
+    data.forEach(function(d) {
+		console.log(this);
+    });
+
+   
+// Generate the table 
+function tabulate(data, columns) {
+    var table = d3.select("body").append("table")
+            .attr("style", "margin-left: 50px"),
+        thead = table.append("thead"),
+        tbody = table.append("tbody");
+
+    // append the header row---only really basic structure reference to http://bl.ocks.org/d3noob/473f0cf66196a008cf99
+    thead.append("tr")
+        .selectAll("th")
+        .data(columns)
+        .enter()
+        .append("th")
+            .text(function(column) { return column; });
+
+    // create a row for each object in the data
+    var rows = tbody.selectAll("tr")
+        .data(data)
+        .enter()
+        .append("tr")
+		.on("mouseover", function(d, i){
+			console.log("current color:"+" "+this.style.background);
+			if(this.style.background==="rgb(46, 254, 154)"){
+				d3.select(this).style({"background":"#04B45F"});
+				green=2;}
+			else{
+     					d3.select(this).style({"background":"yellow"});}
+     				})
+		.on("click",function(d, i){
+			console.log("click");
+			green=1;
+			d3.selectAll("tr").style({"background": "white"});
+     					d3.select(this).style({"background": "#2EFE9A"});
+     				})
+		.on("mouseout", function(d, i){
+		console.log(this.style.background);
+			if(green===1){green=0;}
+			else if(green===2){d3.select(this).style({"background": "#2EFE9A"});green=0;}
+			else{
+				green=0;
+     			d3.select(this).style({"background": "white"});}
+     				})
+     	
+
+    // create a cell in each row for each column
+    var cells = rows.selectAll("td")
+        .data(function(row) {
+            return columns.map(function(column) {
+                return {column: column, value: row[column]};
+            });
+        })
+        .enter()
+        .append("td")
+		.text(function(d) { return d.value; })
+     //   .attr("style", "font-family: Courier");// sets the font style
+        //    .html(function(d) { return d.value; })
+ //   .on("mouseover", function(d, i){
+     		//			d3.select(this).style({"opacity": "yellow"});
+     			//	})
+     			//	.on("mouseout", mouseOut);
+//After mouseover, return the cells to their original colour
+     		
+    return table;
+}
+
+// render the table
+ var peopleTable = tabulate(data, Object.keys(firstOne));
+ 
+
+});
+</script>
+</body>
+</html>
