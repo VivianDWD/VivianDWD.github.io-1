@@ -55,7 +55,8 @@ var data=[];
 var i=0;
 var newdataline=0;
 var flag=0;
-var idtable=["10371","11269"];//"941","89618"];
+var idtable=[];
+//["10371","11269"];//"941","89618"];
 //"825652","179386","531348","1483004","849521","398396","675561","2007598"];			//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 var c
 //var selectState="CA";
@@ -75,7 +76,7 @@ var svg = d3.select("body")
         .attr("transform", 
               "translate(" + margin.left + "," + margin.top + ")");	
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
-d3.csv("10000test.csv", function(error, alldata) {
+d3.csv("park-movement-Fri1.csv", function(error, alldata) {
 	/////////console.log(alldata);
 	firstOne=alldata[0];
 //	///////////////console.log(firstOne);	
